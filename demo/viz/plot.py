@@ -34,3 +34,21 @@ def plot_matrix(matrix, output_image_path=None, vmin=None, vmax=None, title=None
     else:
         plt.show()
     plt.close(fig)
+
+
+def plot_waveform_and_spectrogram(
+    samples, sample_rate, title="", output_file_path=None
+):
+    fig, axs = plt.subplots(2)
+    fig.suptitle(title)
+
+    # 1st
+    axs[0].plot(x, y)
+    # 2nd
+    axs[1].plot(x, -y)
+
+    if output_file_path is None:
+        plt.show()
+    else:
+        pass  # TODO: Write to file
+    plt.close(fig)
