@@ -151,6 +151,10 @@ class FrequencyMask(BaseWaveformTransform):
     def apply(self, samples, sample_rate):
         bandwidth = self.parameters["bandwidth"]
         freq_start = self.parameters["freq_start"]
+        if freq_start < 1000:
+            bandwidth = min(400, bandwidth)
+        if freq_start >= 1000 and freq_start < 3000:
+            bandwidth = min(1000, bandwidth)
         samples = self.__butter_bandstop_filter(
             samples, freq_start, freq_start + bandwidth, sample_rate, order=6
         )
